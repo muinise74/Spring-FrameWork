@@ -25,6 +25,7 @@
 		a {
 			color : black;
 		}
+		
 	</Style>
 </head>
 <body>
@@ -32,32 +33,33 @@
 <div class="container">
   <h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board</h2>
   <div class="panel panel-default">
-    <div class="panel-heading">Board List</div>
+    <div class="panel-heading">Board Form</div>
     <div class="panel-body">
-    	<table class = "table table-hover table-bordered" style = "width:100%">
-			<tr class = "active">
-				<th>번호</th>
-				<th>글제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<c:set var = "no" value = "1"/>
-			<c:forEach var = "vo" items = "${list}">
-				<tr>
-					<td>${no}</td>
-					<td><a href = "board.do?idx=${vo.idx}">${vo.title}</a></td>
-					<td>${vo.writter}</td>
-					<td>${vo.indate}</td>
-					<td>${vo.count}</td>
-				</tr>
-				<c:set var = "no" value = "${no+1}"/>
-			</c:forEach>
-		</table>
-		<a href = 'boardInsertForm.do'><button class = 'btn'>글 작성</button></a>
-    </div>
+			<form class="form-horizontal" action="boardUpdate.do?idx=${board.idx}" method='post'>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="title">Title:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="title" name = "title"
+							placeholder="${board.title}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="contents">Contents:</label>
+					<div class="col-sm-10">
+						<textArea type="text" class="form-control" rows = '5' id="contents" name = 'contents'
+							placeholder="${board.contents}"></textArea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				</div>
+			</form>
+		</div>
     <div class="panel-body">Big Data 1차</div>
-  </div>
+  	</div>
 </div>
 
 </body>
