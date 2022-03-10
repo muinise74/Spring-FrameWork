@@ -16,15 +16,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<Style>
-		th, td {
-			text-align:center;
-		}
-		
-		a {
-			color : black;
-		}
-	</Style>
 </head>
 <body>
  
@@ -34,25 +25,20 @@
     <div class="panel-heading">Board Heading</div>
     <div class="panel-body">
     	<table class = "table table-hover table-bordered" style = "width:100%">
-			<tr class = "active">
-				<th>번호</th>
-				<th>글제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<c:set var = "no" value = "1"/>
-			<c:forEach var = "vo" items = "${list}">
-				<tr>
-					<td>${no}</td>
-					<td><a href = "board.do?idx=${vo.idx}">${vo.title}</a></td>
-					<td>${vo.writter}</td>
-					<td>${vo.indate}</td>
-					<td>${vo.count}</td>
-				</tr>
-				<c:set var = "no" value = "${no+1}"/>
-			</c:forEach>
-		</table>
+	    	<tr>
+	    		<th>${board.title}</th>
+	    		<td>조회수 : ${board.count}</td>
+	    	</tr>
+	    	<tr>
+	    		<td colspan = '2'>
+	    			${board.contents}
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>작성자 : ${board.writter}</td>
+	    		<td>작성일 : ${board.indate}</td>
+	    	</tr>
+    	</table>
     </div>
     <div class="panel-body">Big Data 1차</div>
   </div>
