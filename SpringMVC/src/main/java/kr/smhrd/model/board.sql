@@ -1,4 +1,4 @@
-DROP table board cascade constraint;
+DROP table tboard cascade constraint;
 
 CREATE table tboard(
 	idx int not null auto_increment,

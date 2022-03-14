@@ -31,23 +31,24 @@
 <body>
  
 <div class="container">
-  <h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board</h2>
+  <h2><a href = 'board.do?idx=${board.idx}'><i class="bi bi-chevron-left"></i></a> Spring MVC Board</h2>
   <div class="panel panel-default">
-    <div class="panel-heading">Board Form</div>
+    <div class="panel-heading">Board Update Form</div>
     <div class="panel-body">
-			<form class="form-horizontal" action="boardUpdate.do?idx=${board.idx}" method='post'>
+			<form class="form-horizontal" action="boardUpdate.do" method='post'>
+				<input type = "text" name = 'idx' value = '${board.idx}' hidden>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">Title:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="title" name = "title"
-							placeholder="${board.title}">
+						<textArea required = "required" type="text" class="form-control" rows = '1' id="title" name = "title"
+							placeholder="Enter title">${board.title}</textArea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="contents">Contents:</label>
 					<div class="col-sm-10">
 						<textArea type="text" class="form-control" rows = '5' id="contents" name = 'contents'
-							placeholder="${board.contents}"></textArea>
+							placeholder="Enter contents">${board.contents}</textArea>
 					</div>
 				</div>
 				<div class="form-group">

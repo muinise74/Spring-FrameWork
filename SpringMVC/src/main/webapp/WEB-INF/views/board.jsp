@@ -23,7 +23,16 @@
 </head>
 <body>
 <div class="container">
-  <h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board</h2>
+  <h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board
+  	<c:choose>
+		<c:when test = "${empty member}">
+			<a href="login.do" style = "float:right;"><button class = "btn btn-sm" style = "margin-right:0;">LogIn</button></a>
+		</c:when>
+		<c:otherwise>
+			<a href="logout.do" style = "float:right;"><button class = "btn btn-sm" style = "margin-right:0;">LogOut</button></a>
+		</c:otherwise>
+	</c:choose>
+  </h2>
   <div class="panel panel-default">
     <div class="panel-heading">Board</div>
     <div class="panel-body">
@@ -53,8 +62,14 @@
 	    		<td>${board.indate}</td>
 	    	</tr>
     	</table>
-    	<a href = "boardUpdateForm.do?idx=${board.idx}"><button class = 'btn'>수정</button></a>
-    	<a href = "boardDelete.do?idx=${board.idx}"><button class = 'btn'>삭제</button></a>
+    	<c:choose>
+    		<c:when test = "${member.nick == board.writter}">
+		    	<a href = "boardUpdateForm.do?idx=${board.idx}"><button class = 'btn'>수정</button></a>
+		    	<a href = "boardDelete.do?idx=${board.idx}"><button class = 'btn'>삭제</button></a>
+		    </c:when>
+		    <c:otherwise>
+		    </c:otherwise>
+		</c:choose>
     </div>
     <div class="panel-body">Big Data 1차</div>
   </div>

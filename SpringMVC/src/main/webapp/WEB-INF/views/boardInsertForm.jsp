@@ -33,13 +33,13 @@
 <div class="container">
   <h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board</h2>
   <div class="panel panel-default">
-    <div class="panel-heading">Board Form</div>
+    <div class="panel-heading">Board Insert Form</div>
     <div class="panel-body">
 			<form class="form-horizontal" action="boardInsert.do" method='post'>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">Title:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="title" name = "title"
+						<input required="required" type="text" class="form-control" id="title" name = "title"
 							placeholder="Enter title">
 					</div>
 				</div>
@@ -53,8 +53,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="writter">Writter:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="writter" name = 'writter'
-							placeholder="Enter writter">
+						<input required="required" type="text" class="form-control" id="writter" name = 'writter'
+							value = "${member.nick}" readonly>
 					</div>
 				</div>
 				<div class="form-group">
