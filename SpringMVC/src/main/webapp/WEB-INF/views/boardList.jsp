@@ -31,15 +31,26 @@
  
 <div class="container">
  	<h2><a href = 'boardList.do'><i class="bi bi-chevron-left"></i></a> Spring MVC Board
- 	<c:choose>
-		<c:when test = "${empty member}">
-			<a href="login.do" style = "float:right;"><button class = "btn btn-sm" style = "margin-right:0;">LogIn</button></a>
-		</c:when>
-		<c:otherwise>
-			<a href="logout.do" style = "float:right;"><button class = "btn btn-sm" style = "margin-right:0;">LogOut</button></a>
-		</c:otherwise>
-	</c:choose>
-  	</h2>
+ 		<div style="float: right;">
+			<c:choose>
+				<c:when test="${empty member}">
+					<a href="login.do"><button class="btn btn-sm" style="margin-right: 0;">LogIn</button></a>
+				</c:when>
+				<c:otherwise>
+					<span style = "font-size:20px;">${member.nick}님</span>
+					<c:choose>
+						<c:when test = "${member.id eq 'Admin'}">
+							<button class="btn btn-sm" style="margin-right: 0;">Member Management</button>
+						</c:when>
+						<c:otherwise>
+							<a href="myPage.do"><button class="btn btn-sm" style="margin-right: 0;">MyPage</button></a>
+						</c:otherwise>
+					</c:choose>
+					<a href="logout.do"><button class="btn btn-sm" style="margin-right: 0;">LogOut</button></a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</h2>
   	<div class="panel panel-default">
     <div class="panel-heading">Board List</div>
     <div class="panel-body">

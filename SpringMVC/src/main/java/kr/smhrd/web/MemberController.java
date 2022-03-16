@@ -51,7 +51,44 @@ public class MemberController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		System.out.println("로그 아웃");
+		//session.removeAttribute("member"); << 이게 더 낫다
 		session.invalidate();
 		return "redirect:/boardList.do";
+	}
+	
+	// 6. MyPage로 이동
+	@RequestMapping("/myPage.do")
+	public void myPage() {
+		System.out.println("마이 페이지");
+	}
+	
+	// 7. 회원 정보 수정 페이지로 이동
+	@RequestMapping("/memberUpdatePage.do")
+	public void memberUpdatePage() {
+		System.out.println("회원 정보 수정 페이지");
+	}
+	
+	// 8. 회원 정보 수정
+	@RequestMapping("/memberUpdate.do")
+	public String memberUpdate(HttpSession session, MemberVO vo) {
+		System.out.println("회원 정보 수정 페이지");
+		mapper.memberUpdate(vo);
+		session.setAttribute("member",mapper.loginSelect(vo));
+		return "redirect:/myPage.do";
+	}
+
+	// 9. 회원 탈퇴
+	@RequestMapping("/memberDelete.do")
+	public String memberDelete(HttpSession session) {
+		System.out.println("회원 탈퇴");
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		mapper.memberDelete(vo);
+		if (mapper.loginSelect(vo) == null) {
+			session.invalidate();
+			return "redirect:/login.do";
+		}else {
+			session.setAttribute("member", mapper.loginSelect(vo));
+			return "redirect:/myPage.do";
+		}
 	}
 }

@@ -20,12 +20,16 @@
 a {
 	color: black;
 }
+
+input {
+	border : 0;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<h2>
-			<a href='boardList.do'><i class="bi bi-chevron-left"></i></a> Spring
+			<a href='myPage.do'><i class="bi bi-chevron-left"></i></a> Spring
 			MVC Board
 			<div style="float: right;">
 				<c:choose>
@@ -34,50 +38,36 @@ a {
 					</c:when>
 					<c:otherwise>
 						<span style = "font-size:20px;">${member.nick}님</span>
-						<a href="myPage.do"><button class="btn btn-sm" style="margin-right: 0;">MyPage</button></a>
 						<a href="logout.do"><button class="btn btn-sm" style="margin-right: 0;">LogOut</button></a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</h2>
 		<div class="panel panel-default">
-			<div class="panel-heading">Board</div>
+			<div class="panel-heading">Member Info Update</div>
 			<div class="panel-body">
-				<table class="table table-hover table-bordered" style="width: 100%">
-					<tr>
-						<th>번호</th>
-						<td>${board.idx}</td>
-					</tr>
-					<tr>
-						<th>제목</th>
-						<td>${board.title}</td>
-					</tr>
-					<tr>
-						<th>조회수</th>
-						<td>${board.count}</td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td>${board.contents}</td>
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td>${board.writter}</td>
-					</tr>
-					<tr>
-						<th>작성일</th>
-						<td>${board.indate}</td>
-					</tr>
-				</table>
-				<c:choose>
-					<c:when test="${member.nick == board.writter}">
-						<a href="boardUpdateForm.do?idx=${board.idx}"><button
-								class='btn'>수정</button></a>
-						<a href="boardDelete.do?idx=${board.idx}"><button class='btn'>삭제</button></a>
-					</c:when>
-					<c:otherwise>
-					</c:otherwise>
-				</c:choose>
+				<form action = "memberUpdate.do" method = "post">
+					<input type ='text' name = 'id' value ='${member.id}' hidden readonly>
+					<input type ='password' name = 'pw' value ='${member.pw}' hidden readonly>
+					<table class="table table-hover table-bordered" style="width: 100%">
+						<tr>
+							<th>Nick</th>
+							<td><input type ='text' name = 'nick' value ='${member.nick}'></td>
+						</tr>
+						<tr>
+							<th>Tel</th>
+							<td><input type ='text' name = 'tel' value ='${member.tel}'></td>
+						</tr>
+						<tr>
+							<th>Address</th>
+							<td><input type ='text' name = 'address' value ='${member.address}'></td>
+						</tr>
+					</table>
+					<div style = "text-align:right;">
+						<button type = 'submit' class='btn' style = "font-size : 10px;">Submit</button>
+						<button type = 'reset' class='btn' style = "font-size : 10px;">Reset</button>
+					</div>
+				</form>
 			</div>
 			<div class="panel-body">Big Data 1차</div>
 		</div>

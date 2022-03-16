@@ -11,4 +11,14 @@
 	<select id = 'loginSelect' parameterType="kr.smhrd.model.MemberVO" resultType="kr.smhrd.model.MemberVO">
 	    select * from tmember where id = #{id} and pw = #{pw}
 	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id = 'memberUpdate' parameterType="kr.smhrd.model.MemberVO">
+	    update tmember set nick = #{nick}, tel = #{tel}, address = #{address} where id = #{id} and pw = #{pw}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id = 'memberDelete' parameterType="kr.smhrd.model.MemberVO">
+	    delete from tmember where id = #{id} and pw = #{pw}
+	</delete>
 </mapper>
